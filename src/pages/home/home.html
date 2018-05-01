@@ -1,31 +1,76 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      VirtualAssistant
-    </ion-title>
+    <ion-row>
+
+      <ion-col>
+        <button ion-button menuToggle icon-left clear small>
+          <ion-icon color="dark" name="menu"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col left>
+        <p>VirtualAssistant</p>
+      </ion-col>
+
+    </ion-row>
+
   </ion-navbar>
 </ion-header>
+
+<ion-menu [content]="content">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <button ion-item (click)="logout()">
+        Sair
+      </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-nav id="nav" #content [root]="rootPage"></ion-nav>
 
 <ion-content padding>
 
   <ion-list>
-    <ion-item-sliding *ngFor="let task of tasks | async">
-      <ion-item>
-        <h1>{{ task.name }}</h1>
-        <p>{{ task.desc }}</p>
-      </ion-item>
-      <ion-item-options side="left">
-        <button ion-button color="secondary" (click)="editContact(task)">
-          <ion-icon name="create"></ion-icon>
-        </button>
-        <button ion-button color="danger" (click)="removeContact(task.key)">
-          <ion-icon name="trash"></ion-icon>
-        </button>
-      </ion-item-options>
-    </ion-item-sliding>
-  </ion-list>
 
+    <ion-card *ngFor="let task of tasks | async">
+      <ion-item class="card-body">
+        <ion-avatar item-start>
+          <ion-icon color="dark" name="list"></ion-icon>
+        </ion-avatar>
+        <h4>{{ task.name }}</h4>
+        <p>{{ task.date | date: "dd/MM/yyyy"}}</p>
+      </ion-item>
+
+      <ion-card-content class="card-body">
+        <p>{{ task.desc }}</p>
+      </ion-card-content>
+
+      <ion-row class="card-footer">
+        <ion-col center text-center small>
+          <button center ion-button icon-left clear small>
+            <ion-icon color="dark" name="checkmark"></ion-icon>
+          </button>
+        </ion-col>
+        <ion-col center text-center small>
+          <button ion-button icon-left clear small>
+            <ion-icon color="dark" name="more"></ion-icon>
+          </button>
+        </ion-col>
+        <ion-col center text-center small>
+          <button center ion-button icon-left clear small>
+            <ion-icon color="dark" name="close"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+
+  </ion-list>
   <button ion-button block color="dark" (click)="goToAddTask()">Adicionar tarefa</button>
 
-  <button ion-button block color="danger" (click)="logout()">Sair</button>
+  <button ion-button block color="danger" >Sair</button>
 </ion-content>

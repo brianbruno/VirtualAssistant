@@ -1,5 +1,8 @@
 page-home {
-  height: 100%;
-  display: block;
-  vertical-align: middle;
+  .card-footer {
+    background-color: #eeeeee;
+  }
+  .card-body {
+    background-color: #f5f5f5;
+  }
 }

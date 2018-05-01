@@ -33,6 +33,7 @@ export class AddTaskPage {
     this.form = this.formBuilder.group({
       name: [this.task.name, Validators.required],
       desc: [this.task.desc, Validators.required],
+      date: [this.task.date, Validators.required],
     });
   }
 

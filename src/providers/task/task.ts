@@ -39,12 +39,12 @@ export class TaskProvider {
     return new Promise((resolve, reject) => {
       if (task.key) {
         this.db.list(this.PATH)
-          .update(task.key, { name: task.name, desc: task.desc })
+          .update(task.key, { name: task.name, desc: task.desc, date: task.date })
           .then(() => resolve())
           .catch((e) => reject(e));
       } else {
         this.db.list(this.PATH)
-          .push({ name: task.name, desc: task.desc })
+          .push({ name: task.name, desc: task.desc, date: task.date })
           .then(() => resolve());
       }
     })

@@ -36,6 +36,16 @@
       </div>
     </ion-item>
 
+    <ion-item>
+      <ion-label>Data</ion-label>
+      <ion-datetime formControlName="date" displayFormat="DD/MM/YYYY"></ion-datetime>
+    </ion-item>
+    <ion-item *ngIf="!form.controls.date.valid && (form.controls.desc.dirty || form.controls.date.touched)" color="danger">
+      <div [hidden]="!form.controls.date.errors.required">
+        O campo é obrigatório
+      </div>
+    </ion-item>
+
     <button ion-button block type="submit" [disabled]="!form.valid" color="secondary">
       Enviar Tarefa
     </button>
