@@ -1,0 +1,8 @@
+{
+  "name": "VirtualAssistant",
+  "app_id": "",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
