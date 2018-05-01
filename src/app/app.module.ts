@@ -17,9 +17,6 @@ import { AddTaskPage } from "../pages/add-task/add-task";
 
 import { TaskProvider } from '../providers/task/task';
 
-import { Push, } from "@ionic-native/push";
-
-
 @NgModule({
   declarations: [
     MyApp,
@@ -54,7 +51,6 @@ import { Push, } from "@ionic-native/push";
   providers: [
     StatusBar,
     SplashScreen,
-    Push,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
     TaskProvider,
