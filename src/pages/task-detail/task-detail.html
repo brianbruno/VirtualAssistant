@@ -1,0 +1,42 @@
+<!--
+  Generated template for the TaskDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="deep-orange-darken-4">
+    <ion-title>Detalhes</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+
+    <ion-row>
+      <h4>{{ name }}</h4>
+
+      <ion-item>
+        <h5>Data: {{ date | date: "dd/MM/yyyy"}}</h5>
+        <ion-badge small center item-end color="secondary" [hidden]="status != 'ok'">Concluída</ion-badge>
+        <ion-badge small center item-end color="danger" [hidden]="status != 'pause'">Pendente</ion-badge>
+      </ion-item>
+
+      <p>{{ desc }}</p>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-row align-self-end class="card-footer">
+      <ion-col center text-center small>
+        <button center ion-button icon-left clear small (click)="remove()">
+          <ion-icon color="danger" name="trash"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

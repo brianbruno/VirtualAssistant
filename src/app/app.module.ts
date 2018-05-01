@@ -16,6 +16,8 @@ import { ResetPasswordPage } from "../pages/reset-password/reset-password";
 import { AddTaskPage } from "../pages/add-task/add-task";
 
 import { TaskProvider } from '../providers/task/task';
+import {TaskDetailPage} from "../pages/task-detail/task-detail";
+import {TasksPage} from "../pages/tasks/tasks";
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { TaskProvider } from '../providers/task/task';
     LoginPage,
     SignupPage,
     ResetPasswordPage,
-    AddTaskPage
+    AddTaskPage,
+    TaskDetailPage,
+    TasksPage
   ],
   imports: [
     BrowserModule,
@@ -46,7 +50,9 @@ import { TaskProvider } from '../providers/task/task';
     LoginPage,
     SignupPage,
     ResetPasswordPage,
-    AddTaskPage
+    AddTaskPage,
+    TaskDetailPage,
+    TasksPage
   ],
   providers: [
     StatusBar,

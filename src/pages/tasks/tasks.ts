@@ -1,20 +1,21 @@
 import { Component } from '@angular/core';
-import {Loading, LoadingController, AlertController, NavController, ToastController} from 'ionic-angular';
-import { AuthProvider } from '../../providers/auth/auth';
-import { LoginPage } from "../login/login";
+import {AlertController, Loading, LoadingController, MenuController, NavController,} from 'ionic-angular';
 import { AddTaskPage } from "../add-task/add-task";
-import {TaskProvider} from "../../providers/task/task";
-import {Observable} from "rxjs/Observable";
-import {TaskDetailPage} from "../task-detail/task-detail";
+import { TaskDetailPage } from "../task-detail/task-detail";
+import { LoginPage } from "../login/login";
+import { AuthProvider } from "../../providers/auth/auth";
+import { TaskProvider } from "../../providers/task/task";
+import { Observable } from "rxjs/Observable";
 
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: 'page-tasks',
+  templateUrl: 'tasks.html',
 })
-export class HomePage {
 
+export class TasksPage {
+
+  public tasks: Observable<any>;
   public loading: Loading;
-  tasks: Observable<any>;
 
   constructor(
     public navCtrl: NavController,
@@ -22,10 +23,13 @@ export class HomePage {
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
     private provider: TaskProvider,
-    private toast: ToastController,) {
+    private menuCtrl: MenuController) {
 
     this.tasks = this.provider.getAll();
+  }
 
+  openMenu() {
+    this.menuCtrl.open();
   }
 
   logout() {
@@ -78,12 +82,12 @@ export class HomePage {
     this.provider.save(task).then(() => {
 
     }).catch((e) => {
-        this.loading.dismiss();
-        let alert = this.alertCtrl.create({
-          message: e.message,
-          buttons: [{text: "Ok", role: 'cancel' }]
-        });
-        alert.present();
+      this.loading.dismiss();
+      let alert = this.alertCtrl.create({
+        message: e.message,
+        buttons: [{text: "Ok", role: 'cancel' }]
+      });
+      alert.present();
     });
   }
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { AngularFireDatabase } from 'angularfire2/database';
+import {AngularFireDatabase, AngularFireObject} from 'angularfire2/database';
 import firebase from 'firebase';
 import {Loading, LoadingController} from "ionic-angular";
 
@@ -34,12 +34,20 @@ export class TaskProvider {
         return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
       })
   }
+/*  get(key: string) : AngularFireObject<any> {
+    const itemPath =  `${this.PATH}${key}`;
+    let task = this.db.object('users/HimtPVEFCHgW4drNzq9LcLBpNDo2');
+    return task;
+  }*/
+
 
   get(key: string) {
-    return this.db.object(this.PATH + key).snapshotChanges()
-      .map(c => {
-        return { key: c.key, ...c.payload.val() };
-      });
+    return this.db.list(this.PATH, ref => ref.orderByChild('name'))
+      .snapshotChanges()
+      .map(changes => {
+        this.loading.dismiss();
+        return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+    });
   }
 
   save(task: any) {

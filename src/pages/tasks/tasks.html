@@ -1,39 +1,23 @@
 <ion-header>
-  <ion-navbar>
-    <ion-row>
 
-      <ion-col>
-        <button ion-button menuToggle icon-left clear small>
-          <ion-icon color="dark" name="menu"></ion-icon>
-        </button>
-      </ion-col>
-      <ion-col left>
-        <p>VirtualAssistant</p>
-      </ion-col>
-
-    </ion-row>
-
+  <ion-navbar color="deep-orange-darken-4">
+    <ion-title>Tarefas</ion-title>
   </ion-navbar>
+
 </ion-header>
 
-<ion-menu [content]="content10">
-  <ion-header>
-    <ion-toolbar color="primary">
-      <ion-title>Menu</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-menu [content]="mycontent">
   <ion-content>
     <ion-list>
-      <button ion-item block color="dark" (click)="goToAddTask()">Adicionar Tarefa</button>
-      <button ion-item block color="danger" (click)="logout()">Sair</button>
+      <p>some menu content, could be list items</p>
     </ion-list>
   </ion-content>
 </ion-menu>
 
-<ion-nav id="nav" #content10 [root]="rootPage"></ion-nav>
+<ion-nav #mycontent [root]="rootPage"></ion-nav>
 
 <ion-content padding>
-
+  <button ion-button menuToggle>Toggle Menu</button>
   <ion-list>
     <ion-card *ngFor="let task of tasks | async">
       <hr [class.ok]="task.status == 'ok'" [class.pause]="task.status == 'pause'">
