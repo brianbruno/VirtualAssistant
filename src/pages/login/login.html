@@ -18,13 +18,13 @@
 
     <ion-item>
       <ion-label stacked>Email</ion-label>
-      <ion-input formControlName="email" type="email" placeholder="Your email address"
+      <ion-input formControlName="email" type="email" placeholder="Seu email"
                  [class.invalid]="!loginForm.controls.email.valid && blur"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label stacked>Password</ion-label>
-      <ion-input formControlName="password" type="password" placeholder="Your password"
+      <ion-label stacked>Senha</ion-label>
+      <ion-input formControlName="password" type="password" placeholder="Sua senha"
                  [class.invalid]="!loginForm.controls.password.valid && blur"></ion-input>
     </ion-item>
 
@@ -35,10 +35,10 @@
   </form>
 
   <button ion-button block clear (click)="goToSignup()">
-    Create a new account
+    Criar uma nova conta
   </button>
 
   <button ion-button block clear (click)="goToResetPassword()">
-    I forgot my password
+    Esqueci minha senha
   </button>
 </ion-content>

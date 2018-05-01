@@ -7,5 +7,25 @@
 </ion-header>
 
 <ion-content padding>
-  <button ion-button block color="teal-darken-4">Block Button</button>
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let task of tasks | async">
+      <ion-item>
+        <h1>{{ task.name }}</h1>
+        <p>{{ task.desc }}</p>
+      </ion-item>
+      <ion-item-options side="left">
+        <button ion-button color="secondary" (click)="editContact(task)">
+          <ion-icon name="create"></ion-icon>
+        </button>
+        <button ion-button color="danger" (click)="removeContact(task.key)">
+          <ion-icon name="trash"></ion-icon>
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <button ion-button block color="dark" (click)="goToAddTask()">Adicionar tarefa</button>
+
+  <button ion-button block color="danger" (click)="logout()">Sair</button>
 </ion-content>

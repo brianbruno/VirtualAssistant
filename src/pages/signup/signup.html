@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Signup</ion-title>
+    <ion-title>Criar conta</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -19,20 +19,20 @@
 
       <ion-item>
         <ion-label stacked>Email</ion-label>
-        <ion-input formControlName="email" type="email" placeholder="Your email address"
+        <ion-input formControlName="email" type="email" placeholder="Seu email"
                    [class.invalid]="!signupForm.controls.email.valid && blur">
         </ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label stacked>Password</ion-label>
-        <ion-input formControlName="password" type="password" placeholder="Your password"
+        <ion-label stacked>Senha</ion-label>
+        <ion-input formControlName="password" type="password" placeholder="Sua senha"
                    [class.invalid]="!signupForm.controls.password.valid && blur">
         </ion-input>
       </ion-item>
 
       <button ion-button block type="submit" [disabled]="!signupForm.valid">
-        Create an Account
+        Criar uma conta
       </button>
     </form>
 

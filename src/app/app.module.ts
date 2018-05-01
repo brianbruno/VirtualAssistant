@@ -4,12 +4,18 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { AuthProvider } from '../providers/auth/auth';
 import { LoginPage } from "../pages/login/login";
 import { SignupPage } from "../pages/signup/signup";
 import { ResetPasswordPage } from "../pages/reset-password/reset-password";
+import { AddTaskPage } from "../pages/add-task/add-task";
+
+import { TaskProvider } from '../providers/task/task';
 
 @NgModule({
   declarations: [
@@ -17,11 +23,21 @@ import { ResetPasswordPage } from "../pages/reset-password/reset-password";
     HomePage,
     LoginPage,
     SignupPage,
-    ResetPasswordPage
+    ResetPasswordPage,
+    AddTaskPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp({
+      apiKey: "AIzaSyAwslrcRdvJvIc0t38BcP4OR1y0PaDHSs0",
+      authDomain: "virtualassistant-brian.firebaseapp.com",
+      databaseURL: "https://virtualassistant-brian.firebaseio.com",
+      projectId: "virtualassistant-brian",
+      storageBucket: "virtualassistant-brian.appspot.com",
+      messagingSenderId: "856854863675"
+    }),
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -29,13 +45,15 @@ import { ResetPasswordPage } from "../pages/reset-password/reset-password";
     HomePage,
     LoginPage,
     SignupPage,
-    ResetPasswordPage
+    ResetPasswordPage,
+    AddTaskPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthProvider
+    AuthProvider,
+    TaskProvider,
   ]
 })
 export class AppModule {}

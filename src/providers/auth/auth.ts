@@ -25,7 +25,7 @@ export class AuthProvider {
       .then( newUser => {
         firebase
           .database()
-          .ref('/userProfile')
+          .ref('/users/')
           .child(newUser.uid)
           .set({ email: email });
       });
