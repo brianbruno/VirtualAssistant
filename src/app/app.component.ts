@@ -3,12 +3,16 @@ import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import firebase from 'firebase';
+
 import { HomePage } from '../pages/home/home';
+import { LoginPage } from "../pages/login/login";
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = HomePage;
+  rootPage: any;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
@@ -16,6 +20,27 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
+    });
+
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyAwslrcRdvJvIc0t38BcP4OR1y0PaDHSs0",
+      authDomain: "virtualassistant-brian.firebaseapp.com",
+      databaseURL: "https://virtualassistant-brian.firebaseio.com",
+      projectId: "virtualassistant-brian",
+      storageBucket: "virtualassistant-brian.appspot.com",
+      messagingSenderId: "856854863675"
+    };
+    firebase.initializeApp(config);
+
+    const unsubscribe = firebase.auth().onAuthStateChanged(user => {
+      if (!user) {
+        this.rootPage = LoginPage;
+        unsubscribe();
+      } else {
+        this.rootPage = HomePage;
+        unsubscribe();
+      }
     });
   }
 }
