@@ -24,9 +24,8 @@
   </ion-header>
   <ion-content>
     <ion-list>
-      <button ion-item (click)="logout()">
-        Sair
-      </button>
+      <button ion-item block color="dark" (click)="goToAddTask()">Adicionar tarefa</button>
+      <button ion-item block color="danger" (click)="logout()">Sair</button>
     </ion-list>
   </ion-content>
 </ion-menu>
@@ -44,6 +43,8 @@
         </ion-avatar>
         <h4>{{ task.name }}</h4>
         <p>{{ task.date | date: "dd/MM/yyyy"}}</p>
+        <span class="status pause" [hidden]="task.status != 'pause'">Pendente</span>
+        <span class="status done" [hidden]="task.status != 'ok'">Concluída</span>
       </ion-item>
 
       <ion-card-content class="card-body">
@@ -52,7 +53,7 @@
 
       <ion-row class="card-footer">
         <ion-col center text-center small>
-          <button center ion-button icon-left clear small>
+          <button center ion-button icon-left clear small (click)="changeStatus(task.key, task.name, task.desc, task.date, 'ok')">
             <ion-icon color="dark" name="checkmark"></ion-icon>
           </button>
         </ion-col>
@@ -62,7 +63,7 @@
           </button>
         </ion-col>
         <ion-col center text-center small>
-          <button center ion-button icon-left clear small>
+          <button center ion-button icon-left clear small (click)="changeStatus(task.key, task.name, task.desc, task.date, 'pause')">
             <ion-icon color="dark" name="close"></ion-icon>
           </button>
         </ion-col>
@@ -70,7 +71,4 @@
     </ion-card>
 
   </ion-list>
-  <button ion-button block color="dark" (click)="goToAddTask()">Adicionar tarefa</button>
-
-  <button ion-button block color="danger" >Sair</button>
 </ion-content>

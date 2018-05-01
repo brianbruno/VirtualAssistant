@@ -24,6 +24,8 @@ export class SignupPage {
     public alertCtrl: AlertController
   ) {
     this.signupForm = formBuilder.group({
+      name: ['',
+        Validators.compose([Validators.minLength(2), Validators.required])],
       email: ['',
         Validators.compose([Validators.required, EmailValidator.isValid])],
       password: ['',
@@ -35,7 +37,7 @@ export class SignupPage {
     if (!this.signupForm.valid){
       console.log(this.signupForm.value);
     } else {
-      this.authProvider.signupUser(this.signupForm.value.email,
+      this.authProvider.signupUser(this.signupForm.value.name, this.signupForm.value.email,
         this.signupForm.value.password)
         .then(() => {
           this.loading.dismiss().then( () => {

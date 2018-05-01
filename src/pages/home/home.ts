@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Loading, LoadingController, AlertController, NavController } from 'ionic-angular';
+import {Loading, LoadingController, AlertController, NavController, ToastController} from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 import { LoginPage } from "../login/login";
 import { AddTaskPage } from "../add-task/add-task";
@@ -14,15 +14,18 @@ export class HomePage {
 
   public loading: Loading;
   tasks: Observable<any>;
+  username: Observable<any>;
 
   constructor(
     public navCtrl: NavController,
     public authProvider: AuthProvider,
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
-    private provider: TaskProvider,) {
+    private provider: TaskProvider,
+    private toast: ToastController,) {
 
     this.tasks = this.provider.getAll();
+
   }
 
   logout() {
@@ -50,6 +53,31 @@ export class HomePage {
 
   goToAddTask() {
     this.navCtrl.push(AddTaskPage);
+  }
+
+  changeStatus (key: string, name: string, desc: string, date, status) {
+    this.loading = this.loadingCtrl.create();
+    this.loading.present();
+
+    let task = {
+      key: key,
+      date: date,
+      name: name,
+      desc: desc,
+      status: status
+    };
+
+    this.provider.save(task).then(() => {
+      this.loading.dismiss();
+      this.toast.create({ message: 'Tarefa concluída com sucesso.', duration: 3000 }).present();
+    }).catch((e) => {
+        this.loading.dismiss();
+        let alert = this.alertCtrl.create({
+          message: e.message,
+          buttons: [{text: "Ok", role: 'cancel' }]
+        });
+        alert.present();
+    });
   }
 
 }
